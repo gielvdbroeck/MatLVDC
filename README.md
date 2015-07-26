@@ -3,6 +3,7 @@ MatLVDC is an open source Matlab toolbox to analyze DC distribution network dyna
 
 # Publications derived from MatLVDC
 Any publication that explicitly or implicitly makes use of MatLVDC should contain a reference to:
+
 Van den Broeck G., Mai T., Driesen J. 'MatLVDC: A New Open Source Matlab Toolbox to Analyse DC Distribution System Dynamics', IEEE PES General Meeting, Denver, Jul 26-31, 2015
 
 # Copyright
