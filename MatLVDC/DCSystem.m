@@ -241,6 +241,14 @@ classdef DCSystem < handle
             y_ext(index) = y_ext_;
         end
         
+        function [] = validate(obj)
+            % VALIDATE checks the DCSystem prior to solving for most common mistakes
+            
+            for k=1:length(obj.busses)
+                obj.busses{k}.validate;
+            end
+            
+        end
     end
     
     methods
@@ -282,6 +290,9 @@ classdef DCSystem < handle
             %
             % OUTPUTS
             % resultSet         structure containing the simulation results
+            
+            %% Validate DC system
+            obj.validate;
             
             %% Check length of initial conditions vector x0
             if length(x0)~=obj.counter.getNumberOfStates()
@@ -417,10 +428,15 @@ classdef DCSystem < handle
             % x0                array specifying the steady-state initial search point (if empty, the function will calculate an appropriate start point)
             % solverOpts        the solver options for fsolve
             
+            %% Validate DC system
+            obj.validate;
+            
+            %% Validate external inputs
             if length(u_ext)~=obj.counter.getNumberOfExtInputs
                 error('The number of external inputs does not match the number of DC system external inputs.');
             end
             
+            %% Solve numerically
             interconnectionM = obj.interconnectionMatrices();
             
             if ~isempty(solverOpts)
@@ -439,6 +455,9 @@ classdef DCSystem < handle
             % INPUTS
             % u_ext         vector containing the external input steady-state values
             % max_tol       specified tolerance for the DC bus voltage
+            
+            %% Validate DC system
+            obj.validate;
             
             %% Verify function input
             if length(u_ext)~=obj.counter.getNumberOfExtInputs

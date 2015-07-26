@@ -405,6 +405,37 @@ classdef Bus < Element
             X.vo = transp(X.vo);
             X.co = transp(X.co);
         end
+        
+        function [] = validate(obj)
+            % VALIDATE checks the Bus prior to solving for most common mistakes
+            
+            %% Check whether VO components are properly connected
+            
+            % Array containing the number of vo_components connected at the positive (first element) and
+            % negative terminal
+            no_vo_components = zeros(2,1);
+            
+            for c=1:length(obj.vo_components)
+                switch obj.vo_components{c}.connection
+                    case Connection.po
+                        no_vo_components(1) = no_vo_components(1) + 1;
+                    case Connection.on
+                        no_vo_components(2) = no_vo_components(2) + 1;
+                    case Connection.pon
+                        no_vo_components(1) = no_vo_components(1) + 1;
+                        no_vo_components(2) = no_vo_components(2) + 1;
+                end
+            end
+            
+            if no_vo_components(1)==0 && obj.connection~=Connection.on
+                error(['No VO component is connected to the positive terminal of ' obj.label]);
+            elseif no_vo_components(2)==0 && obj.connection~=Connection.po
+                error(['No VO component is connected to the negative terminal of ' obj.label]);
+            elseif no_vo_components(1)>1 || no_vo_components(2)>1
+                error(['Too many VO components are connected to the positive and/or terminal of ' obj.label]);
+            end
+            
+        end
     end
 end
 
