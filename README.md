@@ -1,6 +1,10 @@
 # MatLVDC
 MatLVDC is an open source Matlab toolbox to analyze DC distribution network dynamics. It features time-domain analysis, steady-state analysis and small-signal linearization.
 
+# Installation
+
+Download the folder's contents and add the folder to the Matlab path.
+
 # Publications derived from MatLVDC
 Any publication that explicitly or implicitly makes use of MatLVDC should contain a reference to:
 
