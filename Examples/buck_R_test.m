@@ -60,15 +60,15 @@ U_ext = [       380     300      ];
 
 % Run the analysis function
 X_bfs = dc_system.steadyState_bfs(U_ext,1e-6);
-X = dc_system.steadyState(U_ext,X_bfs,[]);
+X = dc_system.steadyState(U_ext,X_bfs.X,[]);
 
 %% Linearized system
-[A, sysPoles] = dc_system.linearSys(X,U_ext);
+[A, sysPoles] = dc_system.linearSys(X.X,U_ext);
 
 %% Run dynamic simulation
 
 % Initial state
-x0 = X_bfs;
+x0 = X_bfs.X;
 
 % External inputs
 u_ext = SignalBuilder();
