@@ -8,7 +8,7 @@ classdef CPL_C < Component
             obj.type = Type.VO;
             obj.connection = connection;
             obj.configuration = Configuration.Unipolar;
-            obj.x{1} = Quantity('Voltage','A');
+            obj.x{1} = Quantity('Voltage','V');
             obj.u_int{1} = Quantity('Current','A');
             obj.y_int{1} = Quantity('Voltage','V');
             obj.u_ext{1} = Quantity('Power','W');
