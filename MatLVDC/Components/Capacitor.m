@@ -42,7 +42,7 @@ classdef Capacitor < Component
             % Time-derivative values of the state-variable functions and the internal output
             % functions
             dxdx(1) = 0;
-            dxdu_int(1) = 1;
+            dxdu_int(1) = 1//obj.parameters{1}.value;
             dy_intdx(1) = 1;
             dy_intdu_int(1) = 0;
         end
