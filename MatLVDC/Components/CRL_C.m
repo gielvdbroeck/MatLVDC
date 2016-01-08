@@ -9,7 +9,7 @@ classdef CRL_C < Component
             obj.connection = connection;
             obj.configuration = Configuration.Unipolar;
             obj.x{1} = Quantity('Voltage','V');  % the voltage over the load
-            obj.u_int{1} = Quantity('Current','A'); % the current over the resistive and capacitve load
+            obj.u_int{1} = Quantity('Current','A'); % the current over the resistive and capacitive load
             obj.y_int{1} = Quantity('Voltage','V'); % the voltage over the load
             obj.u_ext{1} = Quantity('Resistance','Ω'); % load resistance value
             obj.y_ext = cell(0);
